@@ -9,13 +9,11 @@ port: # the port the application listens on. [] if no ports should be exposed. D
   port: 80 # port number that must be exposed
   targetPort: 80x80 # the port number which is exposed by the container and should receive traffic routed to `port`
   protocol: http
-healthcheck:
-  liveness:
-    http:
-      path: /isAlive
+healthcheck: # https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
+  liveness: # is the app alive
+    path: isAlive 
   readiness:
-    http:
-      path: /isReady
+    path: isReady
 fasitResources: # Resources fetched from Fasit
   used: #This will be injected into the application as environment variables
   - alias: mydb
